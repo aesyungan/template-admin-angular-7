@@ -3,14 +3,27 @@ import { NgModule } from '@angular/core';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-
+import { MaterialModuleModule } from './modules/material-module.module';
+import { TemplateAdminComponent } from './pages/admin/template-admin/template-admin.component';
+import { HomeComponent } from './pages/admin/home/home.component';
+import { TemplateAuthenticationComponent } from './pages/authentication/template-authentication/template-authentication.component';
+import { LoginComponent } from './pages/authentication/login/login.component';
+import { LoadingComponent } from './pages/utils/loading/loading.component';
+import { HttpClientModule } from '@angular/common/http';
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    TemplateAdminComponent,
+    HomeComponent,
+    TemplateAuthenticationComponent,
+    LoginComponent,
+    LoadingComponent,
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    MaterialModuleModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -1,0 +1,137 @@
+<section class="header-disable" *ngIf="drawer.opened==true" (click)="drawer.toggle()"></section>
+<section class="content-header-app">
+  <mat-toolbar class="header-app-template">
+    <div class="left">
+      <i class="material-icons poiner-menu" (click)="drawer.toggle()" *ngIf="drawer.opened==true">chevron_left</i>
+      <i class="material-icons poiner-menu" (click)="drawer.toggle()">menu</i>
+      <div class="app-name" *ngIf="drawer.opened==false">
+        <img class="img-template-empresa rounded-circle margin-app-name-icon " src="https://www.daftra.com/css/images/landing/clinicflat.png">
+        <span class="name">My Application</span>
+      </div>
+
+    </div>
+    <div class="right">
+      <div class="item">
+        <mat-icon>notification_important</mat-icon>
+      </div>
+      <div class="item item-log-out">
+        <img class="img-avatar-template  rounded-circle" src="https://static1.squarespace.com/static/59b46fcb197aea58a804a8f9/t/5ab1336f758d4671e7ec2c9f/1521562517177/DSC_1095.JPG">
+
+        <button mat-icon-button [matMenuTriggerFor]="menu">
+          <mat-icon>settings_power</mat-icon>
+
+        </button>
+        <mat-menu #menu="matMenu">
+          <button mat-menu-item>
+            <i class="fa fa-id-card" aria-hidden="true"></i>
+            <span>PerFil</span>
+          </button>
+          <button mat-menu-item>
+            <i class="fas fa-sign-out-alt"></i>
+            <span>Log Out</span>
+          </button>
+        </mat-menu>
+      </div>
+    </div>
+
+  </mat-toolbar>
+</section>
+<section class="content-app-all">
+  <mat-drawer-container class="example-container" autosize>
+    <mat-drawer #drawer class="example-sidenav" mode="side">
+      <div class="app-control-left poiner-menu">
+        <!-- <i class="fa fa-bars" aria-hidden="true"></i> -->
+        <!-- <i class="fa fa-arrow-left" aria-hidden="true" (click)="drawer.toggle()"></i> -->
+      </div>
+      <div class="header-nav-bar">
+        <div class="background-image"></div>
+        <div class="header-app-template-name ">
+          <img class="img-template-empresa-slider-bar rounded-circle" src="https://png.pngtree.com/element_origin_min_pic/16/12/12/ef89f8de7617317548bbdca42ed22586.jpg">
+          <span>My Application</span>
+        </div>
+        <!--user details-->
+        <div class="header-detail-user">
+          <div class="avatar">
+            <img class="img-avatar-template rounded-circle" src="https://static1.squarespace.com/static/59b46fcb197aea58a804a8f9/t/5ab1336f758d4671e7ec2c9f/1521562517177/DSC_1095.JPG">
+          </div>
+          <div class="content mx-auto">
+            <span class="font-small">Alex Fabian Yungan </span>
+            
+              <span class="font-x-small"><span class="badge badge-info">Administrador</span><i class="fa fa-toggle-on green" aria-hidden="true"></i></span>
+            
+          </div>
+        </div>
+      </div>
+      <!--End user details-->
+      <!-- Sidebar Header    -->
+      <div class="side-navbar">
+        <h6 class="sidenav-heading">Home</h6>
+        <ul id="side-admin-menu" class="side-menu list-unstyled">
+          <li [routerLink]="['/admin']" routerLinkActive="router-link-active" class="item-link " (click)="drawer.toggle()">
+            <a>
+              <div class="icon">
+                <mat-icon>dashboard</mat-icon>
+              </div>Dashboard
+            </a></li>
+        </ul>
+      </div>
+      <!-- End Sidebar Header    -->
+      <!-- Side Navbar -->
+      <nav class="side-navbar">
+        <h6 class="sidenav-heading">MODULOS</h6>
+        <div class="side-navbar-wrapper">
+          <!-- Sidebar Navigation Menus-->
+          <div class="main-menu">
+
+            <mat-accordion>
+              <mat-expansion-panel class="menu-expansion">
+                <mat-expansion-panel-header>
+                  <mat-panel-title>
+                    <mat-icon>home</mat-icon>
+                  </mat-panel-title>
+                  <mat-panel-description>
+                    Home
+                  </mat-panel-description>
+                </mat-expansion-panel-header>
+                <ul id="side-admin-menu" class="side-menu list-unstyled">
+                  <li [routerLink]="['/login']" routerLinkActive="router-link-active" class="item-link" (click)="drawer.toggle()">
+                    <a>
+                      <div class="icon">
+                        <mat-icon class="blue">dashboard</mat-icon>
+                      </div>
+                      Dashboard
+                    </a></li>
+                </ul>
+              </mat-expansion-panel>
+              <mat-expansion-panel>
+                <mat-expansion-panel-header>
+                  <mat-panel-title>
+                    <mat-icon>map</mat-icon>
+                  </mat-panel-title>
+                  <mat-panel-description>
+                    Map
+                  </mat-panel-description>
+                </mat-expansion-panel-header>
+              </mat-expansion-panel>
+            </mat-accordion>
+          </div>
+          <!--End Sidebar Navigation Menus-->
+        </div>
+      </nav>
+      <!--End Side Navbar -->
+
+    </mat-drawer>
+
+    <div class="example-sidenav-content">
+
+      <div class="content-data-all">
+        <router-outlet></router-outlet>
+      </div>
+
+    </div>
+
+  </mat-drawer-container>
+</section>
+<footer>
+  <span>Creado Por Alex Yungan</span>
+</footer>

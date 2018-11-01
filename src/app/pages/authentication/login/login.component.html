@@ -1,0 +1,14 @@
+<div class="container">
+  <div class="row">
+    <mat-form-field class="col-md-12">
+      <input matInput placeholder="Usuario" >
+      <!-- <mat-icon matSuffix >supervised_user_circle</mat-icon> -->
+    </mat-form-field>
+
+    <mat-form-field class="col-md-12">
+      <input matInput placeholder="Password" [type]="hide ? 'password' : 'text'">
+      <mat-icon matSuffix (click)="hide = !hide">{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+    </mat-form-field>
+    <button class="mx-auto col-md-4 btn btn-primary" (click)="login()">Login</button>
+  </div>
+</div>

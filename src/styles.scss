@@ -1,1 +1,44 @@
-/* You can add global styles to this file, and also import other style files */
+@import "~@angular/material/prebuilt-themes/indigo-pink.css";
+$font-stack: Helvetica, sans-serif;
+$primary-color: #333;
+$colorHeader: red;
+$colorFondo: blue;
+$colorHeaderText:white;
+/*Init Template Admin*/
+*{
+    font-family: $font-stack;
+}
+html{
+    height: 100%;
+}
+body{
+    margin: 0;
+    height: 100%;
+}
+.mat-drawer-content {
+   
+    overflow: unset!important;
+  }
+  .mat-drawer-container{
+/* overflow: unset; */
+overflow: inherit!important;
+  }
+  .mat-drawer.mat-drawer-side {
+    z-index: 999!important;
+}
+
+.mat-drawer-content {
+    z-index: auto!important;
+}
+
+.mat-drawer-container {
+    z-index: auto!important;
+}
+.menu-expansion {
+
+}
+// .menu-expansion .mat-expansion-panel-content .mat-expansion-panel-body{
+//     background: #2482c78f;
+//     padding: 2px;
+// }
+/*End Template Admin*/
