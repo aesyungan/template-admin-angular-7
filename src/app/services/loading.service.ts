@@ -6,4 +6,10 @@ import { Injectable } from '@angular/core';
 export class LoadingService {
     constructor() { }
     loading = new Subject<boolean>();
+    open() {
+        this.loading.next(true);//close loading 
+    }
+    close() {
+        this.loading.next(false);//close loading 
+    }
 }

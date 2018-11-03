@@ -10,6 +10,7 @@ import { TemplateAuthenticationComponent } from './pages/authentication/template
 import { LoginComponent } from './pages/authentication/login/login.component';
 import { LoadingComponent } from './pages/utils/loading/loading.component';
 import { HttpClientModule } from '@angular/common/http';
+import { FormsModule,ReactiveFormsModule } from '@angular/forms';
 @NgModule({
   declarations: [
     AppComponent,
@@ -23,7 +24,9 @@ import { HttpClientModule } from '@angular/common/http';
     BrowserModule,
     AppRoutingModule,
     MaterialModuleModule,
-    HttpClientModule
+    HttpClientModule,
+    FormsModule,
+    ReactiveFormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

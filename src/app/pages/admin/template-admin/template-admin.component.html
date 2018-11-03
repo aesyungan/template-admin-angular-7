@@ -4,7 +4,7 @@
     <div class="left">
       <i class="material-icons poiner-menu" (click)="drawer.toggle()" *ngIf="drawer.opened==true">chevron_left</i>
       <i class="material-icons poiner-menu" (click)="drawer.toggle()">menu</i>
-      <div class="app-name" *ngIf="drawer.opened==false">
+      <div class="app-name" [hidden]="!drawer.opened==false">
         <img class="img-template-empresa rounded-circle margin-app-name-icon " src="https://www.daftra.com/css/images/landing/clinicflat.png">
         <span class="name">My Application</span>
       </div>
