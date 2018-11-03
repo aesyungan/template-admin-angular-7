@@ -1,10 +1,11 @@
+import { Rol } from './../models/rol.model';
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
 import { LoadingService } from './loading.service';
 import { Observable } from 'rxjs';
 import { Usuario } from '../models/usuario.model';
-import { config } from '../config/app.config';
+import { config, security } from '../config/app.config';
 import { ResponseData } from '../models/utils/ResponseData';
 
 @Injectable({
@@ -20,6 +21,27 @@ export class LoginService {
   public logOut(): void {
     sessionStorage.clear();
     this._router.navigate(['/login']);
+  }
+
+  public getUsuario(): Usuario {
+    let data: Usuario = JSON.parse(sessionStorage.getItem(security.AUTH_USUARIO));
+    if (data == null) {
+      console.log("error->no se pudo optener usuario ");
+      this.logOut();
+      return new Usuario();
+    } else {
+      return data;
+    }
+  }
+  public getRol(): Rol {
+    let data: Rol = JSON.parse(sessionStorage.getItem(security.AUTH_USUARIO_ROL));
+    if (data == null) {
+      console.log("error->no se pudo optener rol de usuario ");
+      this.logOut();
+      return new Rol();
+    } else {
+      return data;
+    }
   }
 }
 

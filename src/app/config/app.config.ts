@@ -6,6 +6,10 @@ export let config = {
     host: host,
     url: `${host}:${port}`
 }
+export let security = {
+    AUTH_USUARIO: 'key_user_auth',
+    AUTH_USUARIO_ROL: 'key_user_rol_auth'
+}
 
 //others config
 //config for alert
