@@ -15,10 +15,10 @@ $colorActiveLinkText: white;
 }
 
 .router-link-active {
-  background: $colorActiveLink!important;
+  background: $colorActiveLink !important;
   color: $colorActiveLinkText !important;
 }
-.router-link-active a{
+.router-link-active a {
   color: $colorActiveLinkText !important;
 }
 .router-link-active:hover {
@@ -231,7 +231,7 @@ $colorActiveLinkText: white;
   // color: #fff;
   text-decoration: none;
   width: 100%;
-  padding: 12px;
+  padding: 0.5em;
   display: flex;
   justify-content: start;
 }
@@ -534,6 +534,7 @@ button:focus {
   background-image: url(https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTXLUa-h0y-LJKfmB-49y0SuNyfMlqyfyIzCH_wPf7y4eqikcfw);
   // filter: blur(1px);
 }
+
 @media (max-width: 450px) {
   .header-app-template .left .app-name .name {
     display: none;

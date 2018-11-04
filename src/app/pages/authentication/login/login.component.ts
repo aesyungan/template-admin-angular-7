@@ -5,8 +5,8 @@ import { LoginService } from 'src/app/services/login.service';
 import { LoadingService } from 'src/app/services/loading.service';
 import { Router } from '@angular/router';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-//import { swal } from 'src/app/config/app.config';
-declare var swal: any;//para alertas usa la libreria swall
+import swal from 'src/app/config/alert.config';
+//declare var swal: any;//para alertas usa la libreria swall
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -50,7 +50,7 @@ export class LoginComponent implements OnInit {
     this._rolService.listarId(id).subscribe(data => {
       this._loadingService.close();//close loading 
       if (data.data != null) {
-       // console.log(data);
+        // console.log(data);
         sessionStorage.setItem(security.AUTH_USUARIO_ROL, JSON.stringify(data.data));
         this._router.navigate(['/admin']);
       } else {

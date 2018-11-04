@@ -24,24 +24,24 @@ export class LoginService {
   }
 
   public getUsuario(): Usuario {
-    let data: Usuario = JSON.parse(sessionStorage.getItem(security.AUTH_USUARIO));
-    if (data == null) {
-      console.log("error->no se pudo optener usuario ");
-      this.logOut();
-      return new Usuario();
-    } else {
-      return data;
-    }
+    return JSON.parse(sessionStorage.getItem(security.AUTH_USUARIO));
+    // if (data == null) {
+    //   console.log("error->no se pudo optener usuario ");
+    //   this.logOut();
+    //   return new Usuario();
+    // } else {
+    //   return data;
+    // }
   }
   public getRol(): Rol {
-    let data: Rol = JSON.parse(sessionStorage.getItem(security.AUTH_USUARIO_ROL));
-    if (data == null) {
-      console.log("error->no se pudo optener rol de usuario ");
-      this.logOut();
-      return new Rol();
-    } else {
-      return data;
-    }
+    return JSON.parse(sessionStorage.getItem(security.AUTH_USUARIO_ROL));
+    // if (data == null) {
+    //   console.log("error->no se pudo optener rol de usuario ");
+    //   this.logOut();
+    //   return new Rol();
+    // } else {
+    //   return data;
+    // }
   }
 }
 

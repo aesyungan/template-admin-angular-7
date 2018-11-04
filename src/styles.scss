@@ -1,41 +1,49 @@
 @import "~@angular/material/prebuilt-themes/indigo-pink.css";
 $font-stack: Helvetica, sans-serif;
-$primary-color: #333;
-$colorHeader: red;
-$colorFondo: blue;
-$colorHeaderText:white;
+$colorDisableBtn: #ff00008f;
 /*Init Template Admin*/
-*{
-    font-family: $font-stack;
+* {
+  font-family: $font-stack !important;
 }
-html{
-    height: 100%;
+html {
+  height: 100%;
 }
-body{
-    margin: 0;
-    height: 100%;
+body {
+  margin: 0;
+  height: 100%;
 }
 .mat-drawer-content {
-   
-    overflow: unset!important;
-  }
-  .mat-drawer-container{
-/* overflow: unset; */
-overflow: inherit!important;
-  }
-  .mat-drawer.mat-drawer-side {
-    z-index: 999!important;
+  overflow: unset !important;
+}
+.mat-drawer-container {
+  /* overflow: unset; */
+  overflow: inherit !important;
+}
+.mat-drawer.mat-drawer-side {
+  z-index: 999 !important;
 }
 
 .mat-drawer-content {
-    z-index: auto!important;
+  z-index: auto !important;
 }
 
 .mat-drawer-container {
-    z-index: auto!important;
+  z-index: auto !important;
 }
 .menu-expansion {
-
+}
+.btn:disabled {
+  cursor: not-allowed !important;
+  background: $colorDisableBtn!important;
+}
+.btn:disabled:hover {
+  background: $colorDisableBtn;
+}
+.mat-expansion-panel-body {
+  padding: 0 4px 4px !important;
+}
+.mat-expansion-panel-body ul li {
+  padding-left: 2em;
 }
 // .menu-expansion .mat-expansion-panel-content .mat-expansion-panel-body{
 //     background: #2482c78f;

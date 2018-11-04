@@ -4,11 +4,14 @@ import { TemplateAdminComponent } from './pages/admin/template-admin/template-ad
 import { HomeComponent } from './pages/admin/home/home.component';
 import { TemplateAuthenticationComponent } from './pages/authentication/template-authentication/template-authentication.component';
 import { LoginComponent } from './pages/authentication/login/login.component';
+import { AutenticationGuard } from './auth-guard/autentication.guard';
+import { AdminGuard } from './auth-guard/admin.guard';
 
 const routes: Routes = [
   {
     path: '',
     component: TemplateAuthenticationComponent,
+    canActivate: [AutenticationGuard],
     children: [
       { path: '', component: LoginComponent },
       { path: 'login', component: LoginComponent }
@@ -17,6 +20,7 @@ const routes: Routes = [
   {
     path: 'admin',
     component: TemplateAdminComponent,
+    canActivate: [AdminGuard],
     children: [
       { path: '', component: HomeComponent },
       { path: 'home', component: HomeComponent }

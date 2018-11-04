@@ -1,6 +1,5 @@
 let port: number = 3000;
 let host: string = 'http://localhost';
-//export declare var swal: any;//para alertas usa la libreria swall
 export let config = {
     port: port,
     host: host,
