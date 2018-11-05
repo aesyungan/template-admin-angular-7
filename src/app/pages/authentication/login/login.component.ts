@@ -34,9 +34,13 @@ export class LoginComponent implements OnInit {
     //console.log(this.form.value);
     this._loginService.login(this.form.value.username, this.form.value.password).subscribe(data => {
       this._loadingService.close();//close loading 
+      this._loginService.clearAll();
       if (data.statusHttp == true) {
-        sessionStorage.setItem(security.AUTH_USUARIO, JSON.stringify(data.data));
-        this.getRolById(data.data.rol_id);
+        //console.log(data);
+        this._loginService.saveToken(data.data);
+        const decodedToken = this._loginService.decodeToken();
+        this._loginService.saveUsuario(decodedToken.user);
+        this.getRolById(decodedToken.user.rol_id);
       } else {
         swal(configAlert(data));
       }
@@ -51,7 +55,7 @@ export class LoginComponent implements OnInit {
       this._loadingService.close();//close loading 
       if (data.data != null) {
         // console.log(data);
-        sessionStorage.setItem(security.AUTH_USUARIO_ROL, JSON.stringify(data.data));
+        this._loginService.saveRol(data.data);
         this._router.navigate(['/admin']);
       } else {
         swal(configAlert(data));
@@ -59,6 +63,7 @@ export class LoginComponent implements OnInit {
     }, error => {
       swal(configAlertErrorRed(error));
       this._loadingService.close();//close loading 
+      console.log(error);
       //console.log(error);
     });
   }

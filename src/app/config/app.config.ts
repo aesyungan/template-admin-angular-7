@@ -7,7 +7,8 @@ export let config = {
 }
 export let security = {
     AUTH_USUARIO: 'key_user_auth',
-    AUTH_USUARIO_ROL: 'key_user_rol_auth'
+    AUTH_USUARIO_ROL: 'key_user_rol_auth',
+    TOKEN_NAME: "key_token_app"
 }
 
 //others config
@@ -35,8 +36,8 @@ export var Alerts = {
 export function configAlertErrorRed(error: any) {
 
     return {
-        title: error.status === 404 ? error.error.title : error.status == 401 || error.status == 400 ? error.error.error : Alerts.titleRed,
-        text: error.status === 404 ? JSON.stringify(error.error.message) : error.status == 401 || error.status == 400 ? error.error.error_description : error.status == 0 ? Alerts.textRedError : Alerts.textRedErrorunknown,
+        title: error.status == 404 || error.status == 403 || error.status == 401 ? error.error.title : error.status == 401 || error.status == 400 ? error.error.error : Alerts.titleRed,
+        text: error.status == 404 || error.status == 403 || error.status == 401 ? JSON.stringify(error.error.message) : error.status == 401 || error.status == 400 ? error.error.error_description : error.status == 0 ? Alerts.textRedError : Alerts.textRedErrorunknown,
         icon: Alerts.iconError,
         timer: Alerts.timeError,
         button: true
