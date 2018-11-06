@@ -92,19 +92,19 @@
               <mat-expansion-panel class="menu-expansion">
                 <mat-expansion-panel-header>
                   <mat-panel-title>
-                    <mat-icon>home</mat-icon>
+                    <mat-icon>verified_user</mat-icon>
                   </mat-panel-title>
                   <mat-panel-description>
-                    Home
+                    Autorización
                   </mat-panel-description>
                 </mat-expansion-panel-header>
                 <ul id="side-admin-menu" class="side-menu list-unstyled">
-                  <li [routerLink]="['/login']" routerLinkActive="router-link-active" class="item-link" (click)="drawer.toggle()">
+                  <li [routerLink]="['/admin/usuario']" routerLinkActive="router-link-active" class="item-link" (click)="drawer.toggle()">
                     <a>
                       <div class="icon">
-                        <mat-icon class="blue">dashboard</mat-icon>
+                        <mat-icon class="blue">supervised_user_circle</mat-icon>
                       </div>
-                      Dashboard
+                      Usuarios
                     </a></li>
                 </ul>
               </mat-expansion-panel>

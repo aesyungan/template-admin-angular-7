@@ -3,7 +3,7 @@ $font-stack: Helvetica, sans-serif;
 $colorDisableBtn: #ff00008f;
 /*Init Template Admin*/
 * {
-  font-family: $font-stack ;
+  font-family: $font-stack;
 }
 html {
   height: 100%;
@@ -34,7 +34,7 @@ body {
 }
 .btn:disabled {
   cursor: not-allowed !important;
-  background: $colorDisableBtn!important;
+  background: $colorDisableBtn !important;
 }
 .btn:disabled:hover {
   background: $colorDisableBtn;
@@ -45,6 +45,36 @@ body {
 .mat-expansion-panel-body ul li {
   padding-left: 2em;
 }
+.mat-form-field {
+  font-size: 14px;
+  width: 100%;
+}
+
+.mat-table {
+  overflow: auto;
+  max-height: 500px;
+}
+
+.mat-row:hover {
+  background: #f3f3f3;
+  cursor: pointer;
+}
+
+.menu-row-accion {
+  max-width: 3rem;
+}
+/* Init fixed en select mat-opions*/
+.cdk-global-overlay-wrapper,
+.cdk-overlay-container {
+  z-index: 99999 !important;
+}
+.label-slide {
+  font-size: small;
+  font-weight: 100 !important;
+  font-family: inherit;
+  color: rgba(0, 0, 0, 0.54);
+}
+/*end fixed en select mat-opions*/
 // .menu-expansion .mat-expansion-panel-content .mat-expansion-panel-body{
 //     background: #2482c78f;
 //     padding: 2px;

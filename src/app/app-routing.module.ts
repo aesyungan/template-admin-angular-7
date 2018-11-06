@@ -6,6 +6,7 @@ import { TemplateAuthenticationComponent } from './pages/authentication/template
 import { LoginComponent } from './pages/authentication/login/login.component';
 import { AutenticationGuard } from './auth-guard/autentication.guard';
 import { AdminGuard } from './auth-guard/admin.guard';
+import { UsuarioComponent } from './pages/admin/usuario/usuario.component';
 
 const routes: Routes = [
   {
@@ -23,7 +24,8 @@ const routes: Routes = [
     canActivate: [AdminGuard],
     children: [
       { path: '', component: HomeComponent },
-      { path: 'home', component: HomeComponent }
+      { path: 'home', component: HomeComponent },
+      { path: 'usuario', component: UsuarioComponent },
     ]
   }
 ];

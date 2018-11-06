@@ -1,0 +1,206 @@
+<section>
+  <!-- Bread crumb -->
+  <div class="row page-titles">
+    <div class="col-md-5 align-self-center">
+      <h3 class="text-primary">Autorización </h3>
+    </div>
+    <div class="col-md-7 align-self-center">
+      <ol class="breadcrumb">
+        <li class="breadcrumb-item">
+          <a href="javascript:void(0)">Usuario </a>
+        </li>
+        <li class="breadcrumb-item active">Details</li>
+      </ol>
+    </div>
+  </div>
+  <!-- End Bread crumb -->
+  <!-- Container fluid  -->
+  <div class="container-fluid">
+    <!-- Start Page Content -->
+    <div class="row">
+      <!-- Column -->
+      <div class="col-lg-12">
+        <div class="card">
+          <div class="card-body">
+
+
+            <button data-toggle="modal" (click)="openModalNuevo(template)" type="button" class="btn btn-success btn-rounded m-b-10 m-l-5">Nuevo</button>
+            <!--busqueda -->
+            <div class="example-header">
+              <mat-form-field>
+                <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Buscar..">
+              </mat-form-field>
+            </div>
+            <!--fin busqueda -->
+            <!--table init-->
+            <div class="example-container ">
+
+              <mat-table [dataSource]="dataSource" matSort>
+
+
+                <!-- Progress nombreUsuario -->
+                <ng-container matColumnDef="username">
+                  <mat-header-cell *matHeaderCellDef mat-sort-header> User Name </mat-header-cell>
+                  <mat-cell *matCellDef="let row"> {{row.username}} </mat-cell>
+                </ng-container>
+                <ng-container matColumnDef="nombres">
+                  <mat-header-cell *matHeaderCellDef mat-sort-header> Nombres </mat-header-cell>
+                  <mat-cell *matCellDef="let row"> {{row.nombres}} </mat-cell>
+                </ng-container>
+                <ng-container matColumnDef="correo">
+                  <mat-header-cell *matHeaderCellDef mat-sort-header> Correo </mat-header-cell>
+                  <mat-cell *matCellDef="let row"> {{row.correo}} </mat-cell>
+                </ng-container>
+                <ng-container matColumnDef="rol_id">
+                  <mat-header-cell *matHeaderCellDef mat-sort-header> Rol </mat-header-cell>
+                  <mat-cell *matCellDef="let row"> {{getRolName(row.rol_id)}} </mat-cell>
+                </ng-container>
+                <ng-container matColumnDef="estado">
+                  <mat-header-cell *matHeaderCellDef mat-sort-header> Estado </mat-header-cell>
+                  <mat-cell *matCellDef="let row">
+                    <span class="badge badge-danger" *ngIf="!row.estado">Inactivo</span>
+                    <span class="badge badge-success" *ngIf="row.estado">Activo</span>
+                  </mat-cell>
+                </ng-container>
+                <!-- Name accion -->
+                <ng-container matColumnDef="accion">
+                  <mat-header-cell *matHeaderCellDef mat-sort-header [ngClass]="'menu-row-accion'"> Mas..
+                  </mat-header-cell>
+                  <mat-cell *matCellDef="let row" md-cell [ngClass]="'menu-row-accion'">
+                    <button mat-icon-button [matMenuTriggerFor]="menu">
+                      <mat-icon>more_vert</mat-icon>
+                    </button>
+                    <mat-menu #menu="matMenu">
+                      <button mat-menu-item (click)="openModalEdit(row,template)">
+                        <mat-icon>mode_edit</mat-icon>
+                        <span>Editar</span>
+                      </button>
+                      <button mat-menu-item (click)="eliminar(row)">
+                        <mat-icon>delete</mat-icon>
+                        <span>Eliminar</span>
+                      </button>
+                      <button mat-menu-item (click)="openModalEdit(row,template)">
+                        <mat-icon>remove_red_eye</mat-icon>
+                        <span>Ver</span>
+                      </button>
+                    </mat-menu>
+                  </mat-cell>
+                </ng-container>
+                <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+                <mat-row *matRowDef="let row; columns: displayedColumns;" (dblclick)="openModalEdit(row,template)"></mat-row>
+              </mat-table>
+              <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]"></mat-paginator>
+            </div>
+            <!--fin table init-->
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<section>
+  <!-- Modal nuevo-->
+  <form #formRegistrar="ngForm">
+    <ng-template #template>
+      <div class="modal-header">
+        <h2 class="modal-title pull-left" *ngIf="isedit">Editar </h2>
+        <h2 class="modal-title pull-left" *ngIf="!isedit">Nuevo </h2>
+        <button type="button" class="close pull-right" aria-label="Close" (click)="modalRef.hide()">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+
+        <div class="row">
+          <div class="col-md-6">
+            <mat-form-field>
+              <mat-select placeholder="Rol" id="rol" #rol="ngModel" name="rol" [(ngModel)]="item.rol_id" required>
+                <mat-option *ngFor="let rool of lstRol" [value]="rool.id">{{rool.nombre}} {{rool.apellido}}</mat-option>
+              </mat-select>
+            </mat-form-field>
+          </div>
+          <div class="col-md-6">
+            <mat-form-field class="example-full-width">
+              <input matInput required type="text" [disabled]="isedit" id="username" #username="ngModel" name="username"
+                [(ngModel)]="item.username" placeholder="User Name">
+            </mat-form-field>
+          </div>
+          <div class="col-md-6">
+            <mat-form-field class="example-full-width">
+              <input matInput required type="text" id="nombres" #nombres="ngModel" name="nombres" [(ngModel)]="item.nombres"
+                placeholder="Nombres">
+            </mat-form-field>
+          </div>
+          <div class="col-md-6">
+            <mat-form-field class="example-full-width">
+              <input matInput required type="text" id="apellidos" #apellidos="ngModel" name="apellidos" [(ngModel)]="item.apellidos"
+                placeholder="Apellidos">
+            </mat-form-field>
+          </div>
+          <div class="col-md-6">
+            <mat-form-field>
+              <mat-select placeholder="Genero" id="genero" #genero="ngModel" name="genero" [(ngModel)]="item.genero"
+                required>
+                <mat-option [value]="true">Masculino</mat-option>
+                <mat-option [value]="false">Femenino</mat-option>
+              </mat-select>
+            </mat-form-field>
+          </div>
+          <div class="col-md-6">
+            <mat-form-field class="example-full-width">
+              <input matInput [matDatepicker]="picker" placeholder="Fecha nacimiento" id="fecha_facimiento"
+                #fecha_facimiento="ngModel" name="fecha_facimiento" [(ngModel)]="item.fecha_facimiento" required>
+              <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+              <mat-datepicker #picker></mat-datepicker>
+            </mat-form-field>
+          </div>
+          <div class="col-md-6">
+            <mat-form-field class="example-full-width">
+              <input matInput required type="text" id="telefono" #telefono="ngModel" name="telefono" [(ngModel)]="item.telefono"
+                placeholder="Telefono">
+            </mat-form-field>
+          </div>
+          <div class="col-md-6">
+            <mat-form-field class="example-full-width">
+              <input matInput required type="text" id="celular" #celular="ngModel" name="celular" [(ngModel)]="item.celular"
+                placeholder="Celular">
+            </mat-form-field>
+          </div>
+          <div class="col-md-6">
+            <mat-form-field class="example-full-width">
+              <input matInput required [type]="'email'" id="correo" #correo="ngModel" name="correo" [(ngModel)]="item.correo"
+                placeholder="Correo">
+            </mat-form-field>
+          </div>
+          <div class="col-md-6">
+            <mat-form-field class="example-full-width">
+              <input matInput required [type]="'direccion'" id="direccion" #direccion="ngModel" name="direccion"
+                [(ngModel)]="item.direccion" placeholder="Dirección">
+            </mat-form-field>
+          </div>
+          <div class="col-md-6">
+            <mat-form-field class="example-full-width">
+              <input matInput required type="password" id="Password" #Password="ngModel" name="Password" [(ngModel)]="item.password"
+                placeholder="Password">
+            </mat-form-field>
+          </div>
+          <div class="col-md-12">
+            <label class="label-slide" for="activo">Estado:
+            </label>
+            <mat-slide-toggle class="example-margin" [color]="'warn'" [checked]="item.estado" id="estado" #estado="ngModel"
+              name="estado" [(ngModel)]="item.estado">
+            </mat-slide-toggle>
+          </div>
+        </div>
+
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" (click)="modalRef.hide()">Close</button>
+        <button [ngClass]="{'btn-disabled': !formRegistrar.form.valid}" *ngIf="!isedit" [disabled]="!formRegistrar.form.valid"
+          class="btn btn-success" value="Guardar" (click)="insertar()">Guardar</button>
+        <button *ngIf="isedit" [disabled]="!formRegistrar.form.valid" class="btn btn-success" value="Guardar" (click)="actualizar()">Actualizar</button>
+      </div>
+    </ng-template>
+  </form>
+  <!-- fin Modal nuevo-->
+</section>
